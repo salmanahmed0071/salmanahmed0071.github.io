@@ -1,4 +1,4 @@
-function signUp_function(val) {
+function signUp_function() {
 	// body...
 	if(val == "Seller")
 	{

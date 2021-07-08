@@ -35,7 +35,7 @@
 
         <header class="masthead">
             <div class="container h-100">
-                <form id="form">
+                <form id="form" method="POST" onsubmit="return logSubmit()">
                     <div class="form-group">
                         <label for="exampleInputName1">Name</label>
                         <input type="email" name = "user_name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
@@ -69,11 +69,11 @@
                         <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                       </div>
                     <div class="form-check">
-                      <input type="radio" class="form-check-input" name="exampleCheck1">
+                      <input type="radio" class="form-check-input" name="exampleCheck1" onclick="handleClick(this)" value="1">
                       <label class="form-check-label" for="exampleCheck1">Customer</label>
                       <br>
-                          <input type="radio" class="form-check-input" name="exampleCheck1">
-                      <label class="form-check-label" for="exampleCheck2">Buyer</label>
+                          <input type="radio" class="form-check-input" name="exampleCheck1" onclick="handleClick(this)" value="2">
+                      <label class="form-check-label" for="exampleCheck2">Seller</label>
                     </div>
                       <p id="log"></p>
                     <br>
@@ -87,16 +87,34 @@
         </footer>
    </body>
    <script type="text/javascript" >
+
+    var currentValue = 0;
+    function handleClick(myRadio) {
+        // alert('Old value: ' + currentValue);
+        // alert('New value: ' + myRadio.value);
+        currentValue = myRadio.value;
+    }
+
+
     function logSubmit(event) {
-        log.textContent = `Form Submitted! Time stamp: ${event.timeStamp}`;
+        // log.textContent = `Form Submitted! Time stamp: ${event.timeStamp}`;
 
         // event.preventDefault();
-        window.location.replace("index.html");
+       console.log("Redirecting to dashboard.html");
+       if(currentValue=="2")
+       {
+          location.replace("dashboard.html");
+       }
+       else{
+          location.replace("customer_dashboard.html");
+       }
+       
+       return false;
       }
 
-      const form = document.getElementById('form');
-      const log = document.getElementById('log');
-      form.addEventListener('submit', logSubmit);
+      // const form = document.getElementById('form');
+      // const log = document.getElementById('log');
+      // form.addEventListener('submit', logSubmit);
 
    </script>
 </html>
